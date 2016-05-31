@@ -1,0 +1,19 @@
+html
+	include ../templates/header
+
+block body
+		.container
+			if data && data.error
+				.row
+					.alert.alert-danger= data.error
+
+			if data && data.username
+				.row
+					.alert.alert-success= 'You can now login ' + data.username
+			.col-sm-6
+				form(method='post')
+					mixin bfield('text', 'username', 'Username')
+					mixin bfield('password', 'password', 'Password')
+					.form-group
+						input.btn.btn-primary(type='submit', value='Register')
+

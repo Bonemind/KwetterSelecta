@@ -1,0 +1,5 @@
+include tweet
+mixin tweetlist(list)
+	ul.list-group
+		each t in list
+			mixin tweet(t)

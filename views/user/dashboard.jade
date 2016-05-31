@@ -1,0 +1,49 @@
+html
+	include ../templates/header.jade
+	include ../mixins/follow.jade
+	include ../mixins/tweetlist
+
+block body
+	.container
+		if req.session.me
+			.row
+				form(action='/tweet', method='post')
+					mixin bfield('text', 'content', 'Post Tweet')
+					.form-group
+						input.btn.btn-primary(type='submit', value='Post')
+		.row
+			.col-sm-12
+				h2 Profile of #{data.username}
+				if req.session.me
+					if data.isFollowing
+						p #{data.username} is following you
+
+					if data.isFollower && req.session.me.id != data.id
+						p You are following #{data.username}
+						button.btn.btn-danger#unfollow(data-unfollow=data.id) Unfollow
+
+					if !data.isFollower && req.session.me.id != data.id
+						p You are not following #{data.username}
+						button.btn.btn-primary#follow(data-follow=data.id) Follow
+
+		.col-sm-6
+			.row
+				h3 Tweets
+				if data.tweets
+					mixin tweetlist(data.tweets)
+			.row
+				h3 Timeline
+				if data.timeline
+					mixin tweetlist(data.timeline)
+
+
+		.col-sm-5.col-sm-offset-1
+			.row
+				h3 Followers
+				if data.followers
+					mixin userlist(data.followers)
+
+			.row
+				h3 Following
+				if data.followers
+					mixin userlist(data.following)

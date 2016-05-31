@@ -1,0 +1,35 @@
+head
+	title Kwetter
+	link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css', rel='stylesheet')
+	script(src='https://code.jquery.com/jquery-2.2.4.min.js')
+	script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+	script(src='https://cdnjs.cloudflare.com/ajax/libs/ractive/0.7.3/ractive.js')
+	script(src='/js/main.js')
+	include ../mixins/bootstrapfield
+
+body
+	.container
+		nav.navbar.navbar-default
+			.container-fluid
+				.navbar-header
+					a.navbar-brand(href='#') Kwetter
+				#navbar.navbar-collapse.collapse
+					ul.nav.navbar-nav
+						li
+							a(href='/tweet') Tweets
+						li
+							a(href='/user') Users
+
+					ul.nav.navbar-nav.navbar-right
+						if (req.session.me)
+							li
+								a(href='/dashboard')= req.session.me.username
+							li
+								a#logout(href='/login') Logout
+						else
+							li
+								a(href='/login') Login
+							li
+								a(href='/register') Register
+
+	block body

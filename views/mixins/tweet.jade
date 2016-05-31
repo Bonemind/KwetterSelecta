@@ -1,0 +1,7 @@
+mixin tweet(t)
+	li.list-group-item
+		span.badge= t.createdAt
+		span.tweet=t.content
+		if t.user && t.user.username
+			br
+			b By: #{t.user.username}

@@ -1,0 +1,33 @@
+html
+	include templates/header.jade
+
+block body
+	.container
+		if req.session.me
+			.row
+				form
+					mixin bfield('text', 'content', 'Post Tweet')
+					.form-group
+						input.btn.btn-primary(type='submit', value='Post')
+		.col-sm-6
+			if data
+				each t in data
+					li.list-group-item
+						span.badge= t.createdAt
+						=t.content
+						br
+						b By: #{t.user.username}
+
+		.col-sm-6
+			.row
+				if data.followers
+					each u in data.followers
+						li.list-group-item
+							=u.username
+
+			.row
+				if data.followers
+					each u in data.following
+						li.list-group-item
+							=u.username
+		

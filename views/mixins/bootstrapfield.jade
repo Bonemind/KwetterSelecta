@@ -1,0 +1,4 @@
+mixin bfield(type, name, label)
+	.form-group(class='field-' + type)
+		label(for=name + 'Field') #{label}:
+		input.form-control(type=type, name='#{name}', value= user ? user[name] : '', id=name + 'Field')

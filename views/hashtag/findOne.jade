@@ -1,0 +1,15 @@
+
+html
+	include ../templates/header
+	include ../mixins/tweetlist
+
+block body
+		.container
+			.col-sm-12
+				.row
+					h3 Tweets with #{data.name}
+				.row
+					ul.list-group
+					if data.tweets
+						mixin tweetlist(data.tweets)
+

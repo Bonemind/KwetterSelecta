@@ -1,0 +1,21 @@
+
+html
+	include ../templates/header
+	include ../mixins/tweetlist
+
+block body
+		script(src='/js/tweet/search.js')
+		.container
+			.row
+				.col-sm-8
+					form(method='get')
+						mixin bfield('text', 'query', 'Search tweets')
+						.form-group
+							input#search.btn.btn-primary(type='submit', value='Search')
+			.col-sm-8
+				.row
+					h3 Tweets
+				.row
+					if data
+						mixin tweetlist(data)
+

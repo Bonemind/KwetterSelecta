@@ -1,0 +1,18 @@
+
+html
+	include ../templates/header
+	include ../mixins/userlink
+
+block body
+		.container
+			.col-sm-12
+				.row
+					h3 User
+				.row
+					ul.list-group
+					if data
+						each u in data
+							li.list-group-item
+								span.badge Followers: #{u.followers.length}
+								mixin userlink(u)
+
