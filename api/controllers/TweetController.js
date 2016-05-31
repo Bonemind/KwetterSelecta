@@ -19,7 +19,6 @@ module.exports = {
 		});
 		Promise.all(promises)
 		.then((hashtags) => {
-			console.log(hashtags);
 			return Tweet.create({ content: content, user: req.session.me, hashtags: _.map(hashtags, (h) => { return h.id }) })
 		}).then((t) => {
 			if (req.wantsJSON) {

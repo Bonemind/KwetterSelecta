@@ -13,7 +13,6 @@ module.exports = {
 		User.findOne({ username: username })
 		.then((user) => {
 			if (!user) {
-				console.log('!user');
 				return Promise.reject();
 			}
 			return Promise.all([user, bcrypt.compare(password, user.password)]);
@@ -25,7 +24,6 @@ module.exports = {
 				return res.redirect('/dashboard');
 			}
 		}).catch((x) => {
-			console.log(x);
 			res.status(401);
 			return res.ok({ error: 'Username or password incorrect' });
 		});

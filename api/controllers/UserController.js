@@ -10,9 +10,6 @@ module.exports = {
 		var username = req.param('username');
 		var password = req.param('password');
 
-		console.log(username);
-		console.log(password);
-
 		User.findOne({ username: username })
 		.then((u) => {
 			if (u) {
